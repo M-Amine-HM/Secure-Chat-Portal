@@ -27,3 +27,16 @@ app = FastAPI(
 @app.get("/ping", tags=["Public"])
 async def ping():
     return {"status": "ok", "message": "Groq API is running."}
+
+VALID_API_KEYS: dict[str, str] = {
+    "sk-student-001": "student_a",
+    "sk-student-002": "student_b",
+    "sk-admin-999": "admin",
+}
+
+
+def require_api_key(x_api_key: str = Header(..., alias="X-API-Key")) -> str:
+    if x_api_key not in VALID_API_KEYS:
+        raise HTTPException(status_code=401,
+                            detail="Invalid API key.")
+    return VALID_API_KEYS[x_api_key]  # ← e.g. 'student_a'

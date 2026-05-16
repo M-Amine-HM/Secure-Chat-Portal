@@ -19,12 +19,25 @@ pip install fastapi uvicorn python-dotenv langchain-groq groq python-jose[crypto
 
 ## Environment
 
-Create a `.env` file in the project folder:
+Copy `.env.example` to `.env` in the project folder:
+
+```bash
+copy .env.example .env
+```
+
+Then edit `.env` and set your values:
 
 ```env
 GROQ_API_KEY=your_groq_key_here
 # Optional
 GROQ_MODEL=openai/gpt-oss-20b
+
+# Auth / JWT
+SECRET_KEY=change-me
+TOKEN_EXPIRE_MIN=30
+
+# CORS (comma-separated)
+CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
 ## Run

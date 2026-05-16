@@ -1,4 +1,4 @@
-# chatBotLab4 (FastAPI + Groq + Auth)
+# Secure Chat Portal (FastAPI + Groq + Auth)
 
 Small FastAPI project with:
 - Public health check: `GET /ping`
@@ -35,6 +35,30 @@ python -m uvicorn main:app --reload --port 8000
 
 Open docs:
 - Swagger UI: http://127.0.0.1:8000/docs
+
+## Web UI (React)
+
+A minimal React UI is in the `frontend/` folder.
+
+1) Start the backend:
+
+```bash
+python -m uvicorn main:app --reload --port 8000
+```
+
+2) Start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The UI defaults to calling `http://127.0.0.1:8000`. To change it, create `frontend/.env`:
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
 
 ## Endpoints
 

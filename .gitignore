@@ -1,6 +1,14 @@
 # Python cache and bytecode
 __pycache__/
 *.py[cod]
+*$py.class
+
+# Python packaging / caches
+.Python
+__pypackages__/
+.cache/
+.eggs/
+pip-wheel-metadata/
 
 # Virtual environments
 .venv/
@@ -9,14 +17,45 @@ env/
 
 # Test and type-check caches
 .pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.hypothesis/
+.tox/
+.nox/
 .mypy_cache/
 .ruff_cache/
 
 # Local configuration and secrets
 .env
 .env.*
+!.env.example
 
 # Packaging / build outputs
 build/
 dist/
 *.egg-info/
+
+# Node / frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Frontend env (keep template)
+frontend/.env*
+!frontend/.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# IDE / OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

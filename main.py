@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Depends, Header, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from langchain_groq import ChatGroq
 from groq import AuthenticationError as GroqAuthenticationError
@@ -28,9 +29,22 @@ if GROQ_API_KEY:
         api_key=GROQ_API_KEY,
     )
 app = FastAPI(
-    title="Groq LLM API — AI Lab",
-    description="Secured FastAPI for Groq grok-4.20-reasoning consumption.",
+    title="Secure Chat Portal",
+    description="Secured FastAPI chat portal powered by Groq.",
     version="1.0.0",
+)
+
+# Allow local dev frontends (Vite default port 5173). Override via CORS_ORIGINS.
+cors_origins = os.getenv(
+    "CORS_ORIGINS",
+    "http://localhost:5173,http://127.0.0.1:5173",
+).split(",")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[o.strip() for o in cors_origins if o.strip()],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
